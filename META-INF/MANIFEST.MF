@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Accessmaintain
+Bundle-SymbolicName: org.tgi.accessmaintain;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: T.G.I..
+Automatic-Module-Name: org.tgi.accessmaintain
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Require-Bundle: org.adempiere.base;bundle-version="6.2.0",
+ org.adempiere.plugin.utils;bundle-version="6.2.0",
+ org.adempiere.ui.zk;bundle-version="6.2.0",
+ org.adempiere.ui;bundle-version="6.2.0",
+ zk;bundle-version="8.6.0",
+ zul;bundle-version="8.6.0"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.adempiere.plugin.utils.AdempiereActivator

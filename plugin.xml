@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension id="org.tgi.webui.apps.form.WAccessMaintain" name="WAccessMaintain" point="org.adempiere.webui.Form">
+      <form class="org.tgi.webui.apps.form.WAccessMaintain"></form>
+   </extension>
+</plugin>
