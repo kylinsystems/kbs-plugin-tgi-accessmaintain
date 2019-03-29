@@ -1,6 +1,5 @@
 package org.tgi.webui.apps.form;
 
-
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.List;
@@ -46,7 +45,6 @@ import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
-import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
@@ -56,9 +54,10 @@ import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.North;
 /**
- * Aide à la maintenance des droits d'accès sur les fenêtres, traitement, formulaires, ...
- * @author Nico
+ * Help to maintain access to windows, reports, forms, ...
+ * @author nmicoud, TGI
  */
+
 public class WAccessMaintain extends ADForm implements EventListener<Event>, WTableModelListener {
 
 	private static final long serialVersionUID = -8528918348159236707L;
@@ -164,38 +163,34 @@ public class WAccessMaintain extends ADForm implements EventListener<Event>, WTa
 	public void dynInit()  {		
 		fType = new Listbox();
 		fType.setMold("select");
-//		fType.setRows(1);
 		fType.addEventListener(Events.ON_SELECT, this);
 
 		fType.appendItem("", "");
 		fType.appendItem(Msg.getElement(m_ctx, "AD_Window_ID"), MMenu.ACTION_Window);
 		fType.appendItem(Msg.getElement(m_ctx, "AD_Process_ID"), MMenu.ACTION_Process);
-		fType.appendItem(Msg.getMsg(m_ctx, "Report"), MMenu.ACTION_Report);
+		fType.appendItem(Msg.getCleanMsg(m_ctx, "Report"), MMenu.ACTION_Report);
 		fType.appendItem(Msg.getElement(m_ctx, "AD_Form_ID"), MMenu.ACTION_Form);
 		fType.appendItem(Msg.getElement(m_ctx, "AD_InfoWindow_ID"), MMenu.ACTION_Info);
 
 		fObject = new Listbox();
 		fObject.setMold("select");
-//		fObject.setRows(1);
 		fObject.addEventListener(Events.ON_SELECT, this);
 
 		fRoleType = new Listbox();
 		fRoleType.setMold("select");
-//		fRoleType.setRows(1);
 		fRoleType.addEventListener(Events.ON_SELECT, this);
-		fRoleType.appendItem("Tous les rôles", roleType_all);
-		fRoleType.appendItem("Rôles avec accès", roleType_withAccess);
-		fRoleType.appendItem("Rôles sans accès", roleType_withoutAccess);
-		fRoleType.appendItem("Rôles avec accès actifs", roleType_withAccessActive);
+		fRoleType.appendItem(Msg.getMsg(m_ctx, "AccessMaintain_AllRoles"), roleType_all);
+		fRoleType.appendItem(Msg.getMsg(m_ctx, "AccessMaintain_RolesWithAccess"), roleType_withAccess);
+		fRoleType.appendItem(Msg.getMsg(m_ctx, "AccessMaintain_RolesWithoutAccess"), roleType_withoutAccess);
+		fRoleType.appendItem(Msg.getMsg(m_ctx, "AccessMaintain_RolesWithActiveAccess"), roleType_withAccessActive);
 
 		fActionType = new Listbox();
 		fActionType.setMold("select");
-//		fActionType.setRows(1);
 		fActionType.addEventListener(Events.ON_SELECT, this);
-		fActionType.appendItem("Ajouter", "1");
-		fActionType.appendItem("Supprimer", "2");
-		fActionType.appendItem("Activer", "3");
-		fActionType.appendItem("Désactiver", "4");
+		fActionType.appendItem(Msg.getMsg(m_ctx, "AccessMaintain_Insert"), "1");
+		fActionType.appendItem(Msg.getMsg(m_ctx, "AccessMaintain_Delete"), "2");
+		fActionType.appendItem(Msg.getMsg(m_ctx, "AccessMaintain_Activate"), "3");
+		fActionType.appendItem(Msg.getMsg(m_ctx, "AccessMaintain_Deactivate"), "4");
 
 		fFilterClient.getComponent().addEventListener(Events.ON_BLUR, this);
 		fFilterRole.getComponent().addEventListener(Events.ON_BLUR, this);
@@ -203,12 +198,12 @@ public class WAccessMaintain extends ADForm implements EventListener<Event>, WTa
 		fFilterClient.getComponent().addEventListener(Events.ON_OK, this);
 		fFilterRole.getComponent().addEventListener(Events.ON_OK, this);
 		fFilterObject.getComponent().addEventListener(Events.ON_OK, this);
-		fFilterObject.getComponent().setPlaceholder("filtre objet");
-		fFilterRole.getComponent().setPlaceholder("filtre rôle");
-		fFilterClient.getComponent().setPlaceholder("filtre tenant");
+		fFilterObject.getComponent().setPlaceholder(Msg.getMsg(m_ctx, "AccessMaintain_FiltreName"));
+		fFilterRole.getComponent().setPlaceholder(Msg.getMsg(m_ctx, "AccessMaintain_FilterRole"));
+		fFilterClient.getComponent().setPlaceholder(Msg.getMsg(m_ctx, "AccessMaintain_FilterTenant"));
 		fCreatedFrom.getComponent().addEventListener(Events.ON_OK, this);
 		fCreatedFrom.getComponent().addEventListener(Events.ON_BLUR, this);
-		fCreatedFrom.getComponent().setPlaceholder("créé depuis");
+		fCreatedFrom.getComponent().setPlaceholder(Msg.getMsg(m_ctx, "AccessMaintain_CreatedSince"));
 
 		bSelect.setMode("toggle");
 		bSelect.setImage(ThemeManager.getThemeResource("images/SelectAll24.png"));
@@ -228,7 +223,7 @@ public class WAccessMaintain extends ADForm implements EventListener<Event>, WTa
 				new ColumnInfo("", "Select", IDColumn.class, false, false, ""),
 				new ColumnInfo(Msg.getElement(Env.getCtx(), "AD_Client_ID"), "Tenant", String.class),
 				new ColumnInfo(Msg.translate(Env.getCtx(), "AD_Role_ID"), "Role", String.class),
-				new ColumnInfo(Msg.translate(Env.getCtx(), "XXA_Exists"), "Exists", String.class),
+				new ColumnInfo(Msg.translate(Env.getCtx(), "AccessMaintain_Exists"), "Exists", String.class),
 				new ColumnInfo(Msg.translate(Env.getCtx(), "IsActive"), "IsActive", String.class),
 				new ColumnInfo(Msg.translate(Env.getCtx(), "IsReadWrite"), "IsReadWrite", String.class)
 		};
