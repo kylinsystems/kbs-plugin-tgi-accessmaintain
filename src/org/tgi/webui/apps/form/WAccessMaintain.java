@@ -198,7 +198,7 @@ public class WAccessMaintain extends ADForm implements EventListener<Event>, WTa
 		fFilterClient.getComponent().addEventListener(Events.ON_OK, this);
 		fFilterRole.getComponent().addEventListener(Events.ON_OK, this);
 		fFilterObject.getComponent().addEventListener(Events.ON_OK, this);
-		fFilterObject.getComponent().setPlaceholder(Msg.getMsg(m_ctx, "AccessMaintain_FiltreName"));
+		fFilterObject.getComponent().setPlaceholder(Msg.getMsg(m_ctx, "AccessMaintain_FilterName"));
 		fFilterRole.getComponent().setPlaceholder(Msg.getMsg(m_ctx, "AccessMaintain_FilterRole"));
 		fFilterClient.getComponent().setPlaceholder(Msg.getMsg(m_ctx, "AccessMaintain_FilterTenant"));
 		fCreatedFrom.getComponent().addEventListener(Events.ON_OK, this);
