@@ -1,7 +1,16 @@
-# org.tgi.accessmaintain
+# KBS Plugin : TGI AccessMaintain
 
-This plugin adds a panel to help insert/update/delete records for *_Access tables.
-Useful for lazy people :)
+The fork from https://github.com/nmicoud/org.tgi.accessmaintain, and converted to be able to use **KBS ObjectData Tool** for plugin installation
 
-Create a new form with classname : 'org.tgi.webui.apps.form.WAccessMaintain'
-Add it to your project, run the 2Pack, give access to the panel and that's it !
+Refer to http://wiki.idempiere.org/en/Plugin:_AccessMaintain
+
+## How to Install
+
+1. Install KBS ObjectData Tool 
+(refer to http://wiki.idempiere.org/en/Plugin:_ObjectDataTool)
+
+2. Install the plugin via Apache Felix Web Console
+
+## How to use
+
+System Admin -> General Rules -> Security -> Access Maintain
