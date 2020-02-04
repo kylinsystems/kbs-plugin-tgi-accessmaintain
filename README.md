@@ -4,7 +4,7 @@ The fork from https://github.com/nmicoud/org.tgi.accessmaintain, and converted t
 
 Refer to http://wiki.idempiere.org/en/Plugin:_AccessMaintain
 
-## How to Install
+## How to install
 
 1. Install KBS ObjectData Tool 
 (refer to http://wiki.idempiere.org/en/Plugin:_ObjectDataTool)
